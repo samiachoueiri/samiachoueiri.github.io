@@ -77,6 +77,68 @@
     }).catch(function () { box.children[1].lastChild.textContent = 'github.com/' + user(); });
   };
 
+  /* Live dashboard: profile, headline numbers, languages (bar list) and repos created per year (dot columns). */
+  S['github-overview'] = function (el) {
+    var profile = h('div', { class: 'gh-id' },
+      h('div', { class: 'gh-avatar' }, ui.media({ label: '', icon: 'github', ratio: '1', round: true })),
+      h('div', null, h('h3', null, '@' + user()), h('span', { class: 'meta' }, 'Loading…')),
+      h('a', { class: 'btn', href: 'https://github.com/' + user(), target: '_blank', rel: 'noopener' }, SITE.icon('github'), 'View on GitHub'));
+    var body = h('div', { class: 'gh-dash-body' }, ui.empty('Loading repositories…'));
+    el.append(h('div', { class: 'gh-dash reveal' }, profile, body));
+
+    getJSON('/users/' + user()).then(function (u) {
+      profile.firstChild.replaceChildren(h('img', { src: u.avatar_url, alt: u.name || u.login }));
+      profile.children[1].replaceChildren(h('h3', null, u.name || u.login),
+        h('span', { class: 'meta' }, '@' + u.login + ' · ' + u.followers + ' followers'));
+    }).catch(function () {});
+
+    repos().then(function (list) {
+      var own = list.filter(function (r) { return !r.fork && SITE.github.exclude.indexOf(r.name) === -1; });
+      var sum = function (k) { return own.reduce(function (n, r) { return n + r[k]; }, 0); };
+      var tally = function (fn) {
+        var m = {};
+        own.forEach(function (r) { var k = fn(r); if (k) m[k] = (m[k] || 0) + 1; });
+        return m;
+      };
+      var langs = tally(function (r) { return r.language; });
+      var langRows = Object.keys(langs).map(function (k) { return { k: k, n: langs[k] }; })
+        .sort(function (a, b) { return b.n - a.n || a.k.localeCompare(b.k); });
+      var max = langRows.length ? langRows[0].n : 1;
+      var years = tally(function (r) { return r.created_at && r.created_at.slice(0, 4); });
+      var y0 = Math.min.apply(null, Object.keys(years).map(Number)), y1 = new Date().getFullYear();
+
+      var yearCols = [];
+      for (var y = y0; y <= y1; y++) {
+        var n = years[y] || 0, dots = [];
+        for (var i = 0; i < n; i++) dots.push(h('i', { class: 'dot' }));
+        yearCols.push(h('div', { class: 'dot-col', title: y + ': ' + n + ' new repositor' + (n === 1 ? 'y' : 'ies') },
+          h('div', { class: 'dots' }, dots), h('span', { class: 'bar-y' }, "'" + String(y).slice(2))));
+      }
+
+      body.replaceChildren(
+        ui.stats([
+          { value: own.length, label: 'Original repositories' },
+          { value: langRows.length, label: 'Languages' },
+          { value: sum('stargazers_count'), label: 'Stars' },
+          { value: sum('forks_count'), label: 'Forks' }
+        ]),
+        h('div', { class: 'gh-charts' },
+          h('div', { class: 'gh-chart' },
+            h('h3', { class: 'subhead' }, 'Main language per repository'),
+            h('div', { class: 'hbars', role: 'list' }, langRows.map(function (r) {
+              return h('div', { class: 'hbar', role: 'listitem', title: r.k + ': ' + r.n + ' repositor' + (r.n === 1 ? 'y' : 'ies') },
+                h('span', { class: 'hbar-k' }, r.k),
+                h('span', { class: 'hbar-track' }, h('i', { style: { width: (r.n / max * 100) + '%' } })),
+                h('span', { class: 'hbar-n' }, r.n));
+            }))),
+          h('div', { class: 'gh-chart' },
+            h('h3', { class: 'subhead' }, 'Repositories created per year'),
+            h('div', { class: 'dot-cols gh-years' }, yearCols))));
+    }).catch(function (err) {
+      body.replaceChildren(h('p', { class: 'notice' }, err.message));
+    });
+  };
+
   S['github-featured'] = function (el, opts) {
     var g = SITE.github;
     var cards = {};
@@ -87,6 +149,7 @@
         var stats = h('div');
         cards[f.repo] = stats;
         return ui.card({
+          media: !f.image && f.infographic ? SITE.infographic(f.infographic) : null,
           image: f.image, imageLabel: f.imageLabel, ratio: '16 / 9',
           meta: f.repo, title: f.title, href: 'https://github.com/' + user() + '/' + f.repo,
           body: f.summary, tags: f.tags, foot: stats,

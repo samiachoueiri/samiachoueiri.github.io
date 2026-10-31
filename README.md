@@ -31,7 +31,7 @@ Everything else lives in `assets/js/data/`:
 
 Most items accept `links: [{ label: 'Poster', url: '…' }]`.
 
-**Adding images.** Put the file under `assets/media/<page>/`, e.g. `assets/media/recognition/knit12.jpg`. Then set the item's `image` field (or `portrait` / `logo`) to that path. Any item without an image shows a labelled placeholder.
+**Adding images.** Put the file under `assets/media/<page>/`, e.g. `assets/media/awards/knit12.jpg`. Then set the item's `image` field (or `portrait` / `logo`) to that path. Any item without an image shows a labelled placeholder.
 
 **Adding a page.**
 1. Copy an existing page (e.g. `teaching.html`).

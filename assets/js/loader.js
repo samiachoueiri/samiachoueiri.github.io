@@ -22,6 +22,7 @@
     'core/bibtex.js',
     'core/icons.js',
     'core/components.js',
+    'core/infographics.js',
     'core/layout.js',
 
     // Section renderers (each registers functions used by data-render="...")
@@ -37,9 +38,19 @@
     // Boot
     'main.js'
   ];
+  // Local preview: add a timestamp so the browser never serves stale scripts/CSS after an edit.
+  // (The live site keeps normal caching.)
+  var local = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+  var bust = local ? '?v=' + Date.now() : '';
+  if (local) {
+    document.querySelectorAll('link[rel="stylesheet"][href*="assets/css/"]').forEach(function (l) {
+      l.href = l.getAttribute('href').split('?')[0] + bust;
+    });
+  }
+
   files.forEach(function (f) {
     var s = document.createElement('script');
-    s.src = base + f;
+    s.src = base + f + bust;
     s.async = false; // keep execution order
     document.head.appendChild(s);
   });

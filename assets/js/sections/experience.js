@@ -17,7 +17,7 @@
       ui.head(opts, 'Education'),
       h('div', { class: 'entries' }, X().education.map(function (e) {
         return ui.entry({
-          title: e.degree, sub: e.school, logo: e.logo, logoIcon: 'image',
+          title: e.degree, sub: e.school, logo: e.logo, logoAlt: e.school + ' logo', logoIcon: 'image',
           date: SITE.formatRange(e.start, e.end),
           tags: e.details, links: e.links
         });
@@ -30,7 +30,7 @@
       ui.head(opts, 'Work experience'),
       h('div', { class: 'entries' }, X().positions.map(function (p) {
         return ui.entry({
-          title: p.title, org: p.org, logo: p.logo,
+          title: p.title, org: p.org, logo: p.logo, logoAlt: p.org + ' logo',
           date: SITE.formatRange(p.start, p.end) + (p.location ? ' · ' + p.location : ''),
           desc: p.desc, links: p.links
         });

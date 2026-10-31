@@ -212,6 +212,8 @@ main { padding-block: 56px 96px; }
 .entry:last-child { border-bottom: 1px solid var(--line); }
 .entry.with-logo { grid-template-columns: 56px 1fr auto; }
 .entry .logo { grid-row: span 3; width: 56px; }
+/* Logos keep their own shape (no cropping) on a white tile, so wide and square logos both fit. */
+.entry .logo .logo-img { object-fit: contain; padding: 4px; background: #fff; border: 1px solid var(--line); }
 .entry-title { font-weight: 600; }
 .entry-title .org { font-weight: 400; color: var(--muted); }
 .entry-date { color: var(--faint); font-size: .88rem; white-space: nowrap; text-align: right; }
@@ -420,3 +422,289 @@ main { padding-block: 56px 96px; }
   .reveal { animation: rise .5s ease both; }
   @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 }
+
+/* ==========================================================================
+   GitHub page: live overview dashboard
+   ========================================================================== */
+.gh-dash { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: 24px; display: flex; flex-direction: column; gap: 24px; }
+.gh-id { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.gh-id .gh-avatar { width: 64px; }
+.gh-id img { width: 64px; height: 64px; border-radius: 50%; }
+.gh-id .meta { color: var(--muted); font-size: .9rem; }
+.gh-id .btn { margin-left: auto; }
+.gh-dash .stats { border-radius: var(--radius-sm); }
+.gh-dash-body { display: flex; flex-direction: column; gap: 28px; }
+.gh-charts { display: grid; grid-template-columns: 1.3fr 1fr; gap: 32px; }
+.gh-chart .subhead { margin-top: 0; }
+@media (max-width: 760px) { .gh-charts { grid-template-columns: 1fr; } }
+
+/* Single-series horizontal bars (one hue, labelled - no legend needed) */
+.hbars { display: flex; flex-direction: column; gap: 8px; }
+.hbar { display: grid; grid-template-columns: minmax(90px, 140px) 1fr 24px; align-items: center; gap: 10px; font-size: .85rem; }
+.hbar-k { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hbar-track { height: 10px; }
+.hbar-track i { display: block; height: 100%; min-width: 6px; background: var(--accent); border-radius: 0 4px 4px 0; }
+.hbar:hover .hbar-track i { filter: brightness(1.15); }
+.hbar-n { color: var(--text); font-variant-numeric: tabular-nums; text-align: right; }
+.gh-years { --c: var(--accent); min-height: 90px; }
+.gh-years .dot-col { cursor: default; }
+
+/* ==========================================================================
+   Infographics (core/infographics.js) - drawn from data, no image files
+   ========================================================================== */
+.ig {
+  --good: #2e7d4f; --bad: #b42318;
+  margin: 0; padding: 16px; border-radius: var(--radius-sm);
+  background: var(--surface-2); display: flex; flex-direction: column; gap: 12px; font-size: .8rem;
+}
+:root[data-theme="dark"] .ig { --good: #6cc28f; --bad: #f28b82; }
+.ig-cap { color: var(--faint); font-size: .72rem; text-align: center; line-height: 1.3; }
+.ig-to { color: var(--faint); font-size: 1rem; }
+.ig .ig-note, .card .ig .ig-note { color: var(--faint); font-size: .74rem; margin: 0; }
+
+/* Steps with arrows: horizontal by default, wraps on narrow cards */
+.ig-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 22px; counter-reset: step; }
+.ig-step {
+  position: relative; counter-increment: step;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+  padding: 6px 10px; color: var(--text); line-height: 1.25;
+}
+.ig-step::before { content: counter(step); font-weight: 600; color: var(--accent); margin-right: 6px; font-variant-numeric: tabular-nums; }
+.ig-step:not(:last-child)::after { content: "\2192"; position: absolute; right: -17px; top: 50%; transform: translateY(-50%); color: var(--faint); }
+.ig-steps.compact .ig-step { padding: 4px 8px; font-size: .74rem; }
+.ig-steps.vertical { flex-direction: column; gap: 14px; }
+.ig-steps.vertical .ig-step:not(:last-child)::after { content: "\2193"; right: auto; left: 14px; top: auto; bottom: -15px; transform: none; }
+
+/* pipeline: one or more lanes */
+.ig-lane { display: flex; flex-direction: column; gap: 6px; padding: 10px; border-radius: 8px; border: 1px dashed var(--line); }
+.ig-lane.hl { border: 1.5px solid color-mix(in srgb, var(--accent) 55%, var(--line)); background: color-mix(in srgb, var(--accent-soft) 60%, transparent); }
+.ig-lane-label { font-weight: 600; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); }
+.ig-lane.hl .ig-lane-label { color: var(--accent); }
+.ig-lane.hl .ig-step { border-color: color-mix(in srgb, var(--accent) 30%, var(--line)); }
+
+/* badges: headline facts */
+.ig-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+.ig-badge { display: flex; flex-direction: column; padding: 6px 12px; border-radius: 8px; background: var(--surface); border: 1px solid var(--line); line-height: 1.2; }
+.ig-badge b { font-family: var(--font-serif); font-weight: 500; font-size: 1.05rem; color: var(--text); }
+.ig-badge span { color: var(--faint); font-size: .7rem; }
+
+/* flows: zones + allowed / dropped arrows (state shown by icon + label, not colour alone) */
+.ig-zones, .ig-flow { display: grid; grid-template-columns: 1fr 76px 1fr; }
+.ig-zone { text-align: center; font-weight: 600; color: var(--muted); padding: 8px 4px; border-radius: 8px; background: var(--surface); border: 1px solid var(--line); }
+.ig-zone.mid { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 50%, var(--line)); background: var(--accent-soft); margin: 0 4px; }
+.ig-flow-rows { display: flex; flex-direction: column; gap: 16px; padding: 6px 0; }
+.ig-flow { align-items: center; row-gap: 4px; }
+.ig-flow .ig-arrow { grid-row: 1; position: relative; height: 2px; background: var(--c); }
+.ig-flow.ok { --c: var(--good); }
+.ig-flow.no { --c: var(--bad); }
+.ig-flow.out .ig-arrow, .ig-flow.in.ok .ig-arrow { grid-column: 1 / 4; }
+.ig-flow.in.no .ig-arrow { grid-column: 2 / 4; margin-left: 38px; }
+.ig-flow .ig-arrow::after { content: ""; position: absolute; top: -4px; border: 5px solid transparent; }
+.ig-flow.out .ig-arrow::after { right: -2px; border-left: 7px solid var(--c); border-right: 0; }
+.ig-flow.in .ig-arrow::after { left: -2px; border-right: 7px solid var(--c); border-left: 0; }
+.ig-flow.in.no .ig-arrow::before { content: "\2715"; position: absolute; left: -9px; top: -9px; font-size: .8rem; font-weight: 700; color: var(--c); background: var(--surface-2); line-height: 1; }
+.ig-flow.in.no .ig-arrow::after { display: none; }
+.ig-flow-label { grid-row: 2; grid-column: 1 / 4; text-align: center; color: var(--muted); font-size: .74rem; }
+.ig-state { font-weight: 700; color: var(--c); margin-right: 4px; }
+
+/* groups: model families */
+.ig-source { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; color: var(--muted); }
+.ig-source b { color: var(--accent); }
+.ig-groups { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.ig-group { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; display: flex; flex-direction: column; gap: 6px; }
+.ig-group-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.ig-group-head b { color: var(--text); }
+.ig-pips { display: flex; gap: 3px; }
+.ig-pips i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.ig-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+.ig-chip { padding: 2px 7px; border-radius: 999px; background: var(--surface-2); color: var(--muted); font-size: .72rem; }
+
+/* sketch: flows -> hashed counters -> heavy hitters */
+.ig-sketch { display: flex; align-items: center; gap: 10px; }
+.ig-sk-col { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.ig-sk-col.grow { flex: 1; min-width: 0; }
+.ig-flowlines { display: flex; flex-direction: column; justify-content: center; gap: 5px; width: 56px; height: 64px; }
+.ig-flowlines i { display: block; background: var(--faint); border-radius: 2px; }
+.ig-grid { display: grid; gap: 2px; width: 100%; }
+.ig-grid i { aspect-ratio: 1; border-radius: 2px; background: var(--accent); }
+.ig-hh { display: flex; flex-direction: column; gap: 4px; }
+.ig-hh span { padding: 3px 8px; border-radius: 6px; background: var(--accent); color: var(--accent-text); font-weight: 600; font-size: .72rem; white-space: nowrap; }
+
+/* humanoid: outline with joint sensors + force, next to the method steps */
+.ig-humanoid { display: grid; grid-template-columns: 120px 1fr; gap: 16px; align-items: center; }
+.ig-body-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.ig-body { width: 110px; height: auto; overflow: visible; }
+.ig-limb { stroke: var(--faint); stroke-width: 5; stroke-linecap: round; }
+.ig-head { fill: var(--surface); stroke: var(--faint); stroke-width: 3; }
+.ig-joint { fill: var(--accent); stroke: var(--surface-2); stroke-width: 2; }
+.ig-force { stroke: var(--gold); stroke-width: 3; stroke-linecap: round; }
+.ig-force-head { fill: var(--gold); }
+.ig-force-label { fill: var(--gold); font: 600 13px var(--font-sans); }
+@media (max-width: 420px) { .ig-humanoid { grid-template-columns: 1fr; justify-items: center; } }
+
+/* SVG infographic diagrams (types dpu, threshold, testbed) */
+.ig-svg { width: 100%; height: auto; display: block; overflow: visible; }
+.ig-s-t { font: 500 11px var(--font-sans); fill: var(--muted); }
+.ig-s-t.strong { fill: var(--text); font-weight: 600; }
+.ig-s-t.sub { font-size: 10px; fill: var(--faint); font-weight: 400; }
+.ig-s-t.chip-label { fill: var(--accent); font-weight: 600; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; }
+.ig-s-t.ok { fill: var(--good); font-weight: 600; }
+.ig-s-t.bad { fill: var(--bad); font-weight: 600; }
+.ig-s-t.flag { fill: var(--accent-text); font-weight: 600; }
+.ig-s-box { fill: var(--surface); stroke: var(--line); stroke-width: 1.2; }
+.ig-s-ghost { fill: none; stroke: var(--faint); stroke-width: 1.2; stroke-dasharray: 4 4; opacity: .8; }
+.ig-s-chip { fill: color-mix(in srgb, var(--accent-soft) 70%, var(--surface)); stroke: color-mix(in srgb, var(--accent) 55%, var(--line)); stroke-width: 1.6; }
+.ig-s-slice { fill: none; stroke: color-mix(in srgb, var(--accent) 45%, var(--line)); stroke-width: 1.4; stroke-dasharray: 6 5; }
+.ig-s-stage { fill: var(--surface); stroke: color-mix(in srgb, var(--accent) 30%, var(--line)); stroke-width: 1.2; }
+.ig-s-stage.hot { stroke: var(--accent); stroke-width: 1.8; }
+.ig-s-pin { stroke: color-mix(in srgb, var(--accent) 55%, var(--line)); stroke-width: 3; stroke-linecap: round; }
+.ig-s-link { fill: none; stroke: var(--faint); stroke-width: 2; stroke-linecap: round; }
+.ig-s-link.ok { stroke: var(--good); }
+.ig-s-link.bad { stroke: var(--bad); }
+.ig-s-link.hot { stroke: var(--accent); stroke-width: 3; }
+.ig-s-head { fill: var(--faint); }
+.ig-s-head.ok { fill: var(--good); }
+.ig-s-head.bad { fill: var(--bad); }
+.ig-s-head.hot { fill: var(--accent); }
+.ig-s-tree { fill: var(--accent); }
+.ig-s-trunk { stroke: var(--accent); stroke-width: 2; }
+.ig-s-flow { fill: none; stroke: var(--faint); stroke-linecap: round; opacity: .7; }
+.ig-s-flow.hot { stroke: var(--accent); opacity: 1; }
+.ig-s-bar { fill: color-mix(in srgb, var(--faint) 55%, var(--surface)); }
+.ig-s-bar.hot { fill: var(--accent); }
+.ig-s-threshold { stroke: var(--gold); stroke-width: 1.6; stroke-dasharray: 5 4; }
+.ig-s-flag { fill: var(--accent); stroke: none; }
+.ig-s-core { fill: var(--accent); }
+.ig-s-code { stroke: var(--faint); stroke-width: 3; stroke-linecap: round; opacity: .7; }
+.ig-s-screen { fill: var(--surface-2); stroke: var(--faint); stroke-width: 1.4; }
+/* Packets "flow" along links; still for visitors who prefer reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  .ig-svg .moving { stroke-dasharray: 6 6; animation: ig-dash 1.1s linear infinite; }
+  .ig-svg .ig-s-core { animation: ig-pulse 1.6s ease-in-out infinite; }
+  .ig-svg .ig-s-core:nth-of-type(2n) { animation-delay: .4s; }
+  @keyframes ig-dash { to { stroke-dashoffset: -12; } }
+  @keyframes ig-pulse { 50% { opacity: .45; } }
+}
+
+/* cms diagram: Count-Min Sketch cells, hash links, attack vs normal traffic */
+.ig-s-cell { fill: var(--accent); }
+.ig-s-cell.attack { fill: var(--bad); }
+.ig-s-pkt { fill: var(--bad); }
+.ig-s-hash { fill: none; stroke: var(--bad); stroke-width: 1.2; stroke-dasharray: 3 3; opacity: .85; }
+.ig-s-flow.ok-flow { stroke: var(--good); opacity: .75; }
+.ig-s-flow.attack { stroke: var(--bad); opacity: .9; }
+.ig-s-alert { fill: color-mix(in srgb, var(--bad) 14%, var(--surface)); stroke: var(--bad); stroke-width: 1.2; }
+.ig-s-t.alert-label { fill: var(--bad); font-weight: 600; }
+.ig-s-t.rate { font: 500 20px var(--font-serif); fill: var(--text); }
+
+/* ==========================================================================
+   Awards page (sections/recognition.js)
+   Medal tiers: colour + the glyph inside (★ / 1 / 2 / 3) + text labels, never colour alone.
+   ========================================================================== */
+.tier-gold { --m: var(--gold); }
+.tier-silver { --m: #7d8794; }
+.tier-bronze { --m: #9a5b2e; }
+:root[data-theme="dark"] .tier-silver { --m: #b4bcc8; }
+:root[data-theme="dark"] .tier-bronze { --m: #d29a6b; }
+
+.aw-medal { flex: none; overflow: visible; }
+.aw-medal .aw-ribbon { fill: color-mix(in srgb, var(--accent) 75%, var(--surface)); }
+.aw-medal .aw-ribbon.alt { fill: var(--accent); }
+.aw-medal .aw-disc { fill: var(--m); }
+.aw-medal .aw-disc-ring { fill: none; stroke: color-mix(in srgb, var(--surface) 55%, transparent); stroke-width: 1.2; }
+.aw-medal .aw-glyph { font: 700 10px var(--font-sans); fill: var(--surface); }
+
+/* 1. Trophy shelf */
+.aw-shelf { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: 28px; display: flex; flex-direction: column; gap: 28px; }
+.aw-shelf-top { display: flex; flex-wrap: wrap; align-items: center; gap: 24px 48px; }
+.aw-total { display: flex; flex-direction: column; line-height: 1; }
+.aw-total b { font-family: var(--font-serif); font-weight: 500; font-size: 4rem; letter-spacing: -.02em; }
+.aw-total span { color: var(--muted); margin-top: 6px; }
+.aw-tiers { display: flex; flex-wrap: wrap; gap: 12px 28px; }
+.aw-tier { display: flex; align-items: center; gap: 10px; }
+.aw-tier div { display: flex; flex-direction: column; line-height: 1.2; }
+.aw-tier b { font-family: var(--font-serif); font-weight: 500; font-size: 1.6rem; }
+.aw-tier span { color: var(--faint); font-size: .82rem; }
+
+.aw-timeline { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(40px, 1fr); align-items: end; gap: 6px; border-bottom: 1px solid var(--line); padding-bottom: 0; overflow-x: auto; }
+.aw-col { display: flex; flex-direction: column; align-items: center; gap: 6px; padding-bottom: 8px; }
+.aw-stack { display: flex; flex-direction: column-reverse; align-items: center; gap: 2px; min-height: 26px; }
+.aw-pin { display: inline-flex; border-radius: 6px; cursor: default; transition: transform .15s; }
+.aw-pin:hover, .aw-pin:focus-visible { transform: translateY(-3px) scale(1.12); }
+.aw-year { font-size: .74rem; color: var(--faint); font-variant-numeric: tabular-nums; }
+.aw-col.empty .aw-year { opacity: .55; }
+.aw-col.empty .aw-stack::before { content: ""; width: 4px; height: 4px; border-radius: 50%; background: var(--line); }
+
+.aw-facts { display: flex; flex-wrap: wrap; gap: 10px; }
+.aw-fact { display: flex; align-items: baseline; gap: 8px; padding: 10px 16px; border-radius: 999px; background: var(--surface-2); }
+.aw-fact b { font-family: var(--font-serif); font-weight: 500; font-size: 1.25rem; color: var(--accent); }
+.aw-fact span { color: var(--muted); font-size: .88rem; }
+
+/* 2. Spotlight */
+.aw-spot { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center; padding: 28px; border-radius: var(--radius);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--m) 14%, var(--surface)), var(--surface) 60%);
+  border: 1px solid color-mix(in srgb, var(--m) 35%, var(--line)); }
+.aw-spot-media .media, .aw-spot-media .ph { border-radius: var(--radius-sm); }
+.aw-spot-head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.aw-spot-head .eyebrow { margin: 0; color: var(--m); }
+.aw-spot h2 { font-size: clamp(1.8rem, 3.5vw, 2.4rem); margin-bottom: 8px; }
+.aw-spot-event { color: var(--muted); margin-bottom: 18px; }
+.aw-spot-quote { margin: 0 0 14px; padding: 4px 0 4px 16px; border-left: 3px solid var(--m); font-family: var(--font-serif); font-size: 1.15rem; line-height: 1.45; color: var(--text); }
+.aw-spot-story { color: var(--muted); }
+@media (max-width: 800px) { .aw-spot { grid-template-columns: 1fr; gap: 24px; padding: 20px; } }
+
+/* 3. Research award cards */
+.aw-card { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: transform .15s, box-shadow .15s, border-color .15s; }
+.aw-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); border-color: color-mix(in srgb, var(--m) 45%, var(--line)); }
+.aw-card-media { position: relative; }
+.aw-card-media .media, .aw-card-media .ph { border-radius: 0; }
+.aw-ribbon-badge { position: absolute; left: 12px; top: 12px; display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px 4px 6px; border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 92%, transparent); border: 1px solid color-mix(in srgb, var(--m) 50%, var(--line)); font-size: .74rem; font-weight: 600; color: var(--text); box-shadow: var(--shadow); }
+.aw-card-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.aw-card-body .meta { font-size: .82rem; color: var(--faint); }
+.aw-card-body h3 { font-size: 1.05rem; }
+.aw-work { margin: 0; color: var(--muted); font-size: .92rem; font-style: italic; }
+.aw-card-body .link-row { margin-top: auto; padding-top: 6px; }
+
+/* 4. Competition journey */
+.aw-journey { list-style: none; margin: 0; padding: 0; position: relative; }
+.aw-journey::before { content: ""; position: absolute; left: 102px; top: 10px; bottom: 10px; width: 2px; background: linear-gradient(var(--line), var(--accent)); }
+.aw-stop { display: grid; grid-template-columns: 64px 46px 1fr 168px; gap: 0 16px; align-items: start; padding: 16px 0; }
+.aw-stop-year { font-family: var(--font-serif); font-size: 1.4rem; color: var(--faint); text-align: right; padding-top: 4px; }
+.aw-stop-dot { display: flex; justify-content: center; position: relative; z-index: 1; background: var(--bg); padding: 4px 0; }
+.aw-stop-body h3 { font-family: var(--font-serif); font-weight: 500; font-size: 1.3rem; margin-bottom: 4px; }
+.aw-stop-title { color: var(--text); font-size: .9rem; font-weight: 500; }
+.aw-stop-body p { color: var(--muted); margin: 6px 0 0; font-size: .92rem; }
+.aw-stop-thumb .ph, .aw-stop-thumb .media { border-radius: var(--radius-sm); }
+@media (max-width: 760px) {
+  .aw-journey::before { left: 22px; }
+  .aw-stop { grid-template-columns: 46px 1fr; }
+  .aw-stop-year { grid-column: 2; grid-row: 1; text-align: left; font-size: 1.1rem; padding: 0; }
+  .aw-stop-dot { grid-column: 1; grid-row: 1 / span 3; }
+  .aw-stop-body { grid-column: 2; }
+  .aw-stop-thumb { grid-column: 2; margin-top: 10px; max-width: 240px; }
+}
+
+/* Award photos: click to open full size; certificates are shown whole on a paper-white mat */
+.aw-photo { display: block; position: relative; border-radius: inherit; }
+.aw-photo .media { display: block; transition: filter .2s; }
+.aw-photo:hover .media, .aw-photo:focus-visible .media { filter: brightness(1.04); }
+.media.aw-doc { object-fit: contain; background: #fff; padding: 8px; }
+.aw-spot-media .media.aw-doc { padding: 14px; box-shadow: var(--shadow); }
+
+/* Research awards grouped by year: sticky year label + cards (only years that have awards, so no gaps) */
+.aw-years { display: flex; flex-direction: column; gap: 40px; }
+.aw-yr { display: grid; grid-template-columns: 120px 1fr; gap: 24px; align-items: start; }
+.aw-yr-label { position: sticky; top: 88px; display: flex; flex-direction: column; gap: 4px; padding-top: 4px; border-top: 2px solid var(--accent); }
+.aw-yr-label b { font-family: var(--font-serif); font-weight: 500; font-size: 2rem; line-height: 1.1; padding-top: 8px; }
+.aw-yr-label span { color: var(--faint); font-size: .85rem; }
+.aw-yr-medals { display: flex; gap: 4px; margin-top: 6px; }
+.aw-yr .aw-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); }
+@media (max-width: 760px) {
+  .aw-yr { grid-template-columns: 1fr; gap: 14px; }
+  .aw-yr-label { position: static; flex-direction: row; align-items: baseline; gap: 12px; }
+  .aw-yr-medals { margin: 0 0 0 auto; }
+}
+.aw-note { margin: 0; color: var(--muted); font-size: .88rem; }
+/* Badge sits under the photo (in the card body) so it never covers the image */
+.aw-card-body .aw-ribbon-badge { position: static; align-self: flex-start; box-shadow: none; background: color-mix(in srgb, var(--m) 10%, var(--surface)); }

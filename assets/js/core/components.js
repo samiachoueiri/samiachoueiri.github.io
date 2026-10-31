@@ -60,7 +60,7 @@
       : o.title;
     return h('article', { class: 'card reveal' + (o.class ? ' ' + o.class : '') },
       o.showMedia === false ? null
-        : h('div', { class: 'card-media' }, (function () {
+        : h('div', { class: 'card-media' }, o.media || (function () { // o.media: any node (e.g. an infographic) instead of an image
           var m = ui.media({ src: o.image, alt: o.imageLabel, label: o.imageLabel, ratio: o.ratio || '16 / 9', icon: o.imageIcon, class: o.image ? o.imageClass : null });
           // imageHref makes the image open (e.g. full size) in a new tab.
           return o.image && o.imageHref ? h('a', { class: 'figure-link', href: o.imageHref, target: '_blank', rel: 'noopener' }, m) : m;
@@ -79,7 +79,7 @@
   ui.entry = function (o) {
     var withLogo = o.logo !== undefined;
     return h('div', { class: 'entry reveal' + (withLogo ? ' with-logo' : '') },
-      withLogo ? h('div', { class: 'logo' }, ui.media({ src: o.logo, label: '', ratio: '1', icon: o.logoIcon || 'image' })) : null,
+      withLogo ? h('div', { class: 'logo' }, ui.media({ src: o.logo, alt: o.logoAlt || '', label: '', ratio: '1', icon: o.logoIcon || 'image', class: o.logo ? 'logo-img' : null })) : null,
       h('div', { class: 'entry-title' },
         o.url ? h('a', { href: o.url, target: '_blank', rel: 'noopener' }, o.title) : o.title,
         o.org ? h('span', { class: 'org' }, ', ', o.org) : null),

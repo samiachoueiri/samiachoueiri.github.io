@@ -5,18 +5,18 @@ SITE.experience = {
   education: [
     {
       degree: 'Ph.D. in Informatics', school: 'University of South Carolina',
-      start: '2023-09', end: 'present', logo: null,
+      start: '2023-09', end: 'present', logo: 'assets/media/experience/usc.jpg',
       details: ['GPA: 4.0/4.0']
     },
     {
       degree: 'M.S. in Computer and Communications Engineering', school: 'American University of Science and Technology',
-      start: '2018-10', end: '2021-06', logo: null,
+      start: '2018-10', end: '2021-06', logo: 'assets/media/experience/aust.jpg',
       details: ['Emphasis: Mechatronics Engineering', 'GPA: 3.9/4.0'],
       links: [{ label: 'Degree', url: 'https://drive.google.com/file/d/1wK5paozp9rdfVlqJUTwS00ga2bbjpuwG/view?usp=drive_link' }, { label: 'Transcript', url: 'https://drive.google.com/file/d/1Hm6LtNkR2DY-WzknJT0OluDMKW-V0mD7/view?usp=sharing' }]
     },
     {
       degree: 'B.S. in Computer and Communications Engineering', school: 'American University of Science and Technology',
-      start: '2013-10', end: '2018-06', logo: null,
+      start: '2013-10', end: '2018-06', logo: 'assets/media/experience/aust.jpg',
       details: ['Emphasis: Mechatronics Engineering', 'GPA: 3.4/4.0'],
       links: [{ label: 'Degree', url: 'https://drive.google.com/file/d/11YkaTnEAiez3_C_IUHiUr8zbyto2zEhj/view?usp=sharing' }, { label: 'Transcript', url: 'https://drive.google.com/file/d/1efwX6ArylucfawNy4B6MUvUPJRe6Nm17/view?usp=sharing' }]
     }
@@ -25,43 +25,43 @@ SITE.experience = {
   positions: [
     {
       title: 'Graduate Research / Teaching Assistant', org: 'University of South Carolina', location: 'Columbia, SC',
-      start: '2023-09', end: 'present', logo: null,
+      start: '2023-09', end: 'present', logo: 'assets/media/experience/usc.jpg',
       desc: 'Department of Integrated Information Technology, Molinaroli College of Engineering and Computing.'
     },
     {
       title: 'Computer Vision and Application Engineer', org: 'Oculi', location: 'Rochester, NY',
-      start: '2022-07', end: '2023-07', logo: null,
+      start: '2022-07', end: '2023-07', logo: 'assets/media/experience/oculi.png',
       desc: 'Event-based image sensor development for AI-driven vision applications.'
     },
     {
-      title: 'Robotics and Coding Program Coordinator', org: 'Jusour NGO',
-      start: '2023-01', end: '2023-05', logo: null
+      title: 'Robotics and Coding Program Coordinator', org: 'Jusoor NGO',
+      start: '2023-01', end: '2023-05', logo: 'assets/media/experience/jusoor.jpg'
     },
     {
       title: 'Micro-controller Programming Teacher', org: 'Collège Notre-Dame de Jamhour',
-      start: '2022-03', end: '2023-03', logo: null
+      start: '2022-03', end: '2023-03', logo: 'assets/media/experience/jamhour.jpg'
     },
     {
       title: 'Lab Instructor / Teaching Assistant / Senior Project Co-Advisor', org: 'American University of Science and Technology',
-      start: '2018-09', end: '2022-07', logo: null,
+      start: '2018-09', end: '2022-07', logo: 'assets/media/experience/aust.jpg',
       desc: 'Departments of Mechatronics, Computer and Communications, and Biomedical Engineering, Faculty of Engineering.'
     },
     {
       title: 'Academic / Administrative Assistant', org: 'American University of Science and Technology',
-      start: '2018-09', end: '2022-07', logo: null,
+      start: '2018-09', end: '2022-07', logo: 'assets/media/experience/aust.jpg',
       desc: 'Departments of Mechatronics, Computer and Communications, and Biomedical Engineering, Faculty of Engineering.'
     },
     {
       title: 'Robotics Teacher', org: "École d'Art et de Musique",
-      start: '2019-04', end: '2021-12', logo: null
+      start: '2019-04', end: '2021-12', logo: 'assets/media/experience/eam.png'
     },
     {
       title: 'Technical Scientist', org: 'Trawi 3D Concrete Printing Project',
-      start: '2017-02', end: '2018-06', logo: null
+      start: '2017-02', end: '2018-06', logo: 'assets/media/experience/trawi.jpg'
     },
     {
       title: 'Electro-Mechanical Engineer (Internship)', org: 'Middle East Airlines',
-      start: '2017-08', end: '2017-10', logo: null,
+      start: '2017-08', end: '2017-10', logo: 'assets/media/experience/mea.jpg',
       desc: 'Mideast Aircraft Services Company and Organization (MASCO).'
     }
   ],
