@@ -13,8 +13,8 @@ SITE.profile = {
   portraitFocus: '50% 30%',
 
   // Link for the "Download CV" button (Google Drive). Set to null to hide it.
-  cv: 'https://drive.google.com/file/d/1i45N6OiO95iKbN8tjYfIx_BDroYw5zd-/view?usp=sharing',
-
+  cv: 'https://github.com/samiachoueiri/samiachoueiri.github.io/blob/main/CV___Samia_Choueiri.pdf',
+// https://drive.google.com/file/d/1HOt0y866aQO8bbVBK77eIoSUWqtftIZY/view?usp=sharing
   bio: [
     'I am a Ph.D. candidate at the University of South Carolina, working as a graduate research and teaching assistant in the Department of Integrated Information Technology.',
     'My research accelerates network security with programmable hardware to detect and mitigate DDoS attacks, classify encrypted and malicious traffic, and protect cyber-physical systems at line rate. I also build the hands-on lab series and workshops that teach these technologies to students and professionals nationwide.',
