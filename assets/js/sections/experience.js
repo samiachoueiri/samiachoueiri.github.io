@@ -70,6 +70,24 @@
     ]);
   };
 
+  S['service'] = function (el, opts) {
+    SITE.append(el, [
+      ui.head(opts, 'Professional service'),
+      X().service.map(function (g) {
+        return [
+          h('h3', { class: 'subhead' }, g.group),
+          h('div', { class: 'entries' }, g.items.map(function (s) {
+            return ui.entry({ title: s.title, sub: s.detail, date: SITE.formatDate(s.date), links: s.links });
+          }))
+        ];
+      })
+    ]);
+  };
+
+  S['affiliations'] = function (el, opts) {
+    SITE.append(el, [ui.head(opts, 'Professional affiliations'), ui.tags(X().affiliations, 'accent')]);
+  };
+
   S['languages'] = function (el, opts) {
     SITE.append(el, [
       ui.head(opts, 'Languages'),

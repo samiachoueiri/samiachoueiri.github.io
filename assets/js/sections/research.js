@@ -28,7 +28,11 @@
         var slot = h('div');
         slots.push({ area: a, slot: slot });
         return h('div', { class: 'feature reveal' },
-          h('div', { class: 'feature-media' }, ui.media({ src: a.image, label: a.imageLabel, ratio: '4 / 3' })),
+          // Figures keep their own shape (no cropping) and open full size when clicked.
+          h('div', { class: 'feature-media' }, a.image
+            ? h('a', { class: 'figure-link', href: encodeURI(a.image), target: '_blank', rel: 'noopener' },
+                ui.media({ src: encodeURI(a.image), alt: a.imageLabel, class: 'figure' }))
+            : ui.media({ label: a.imageLabel, ratio: '4 / 3' })),
           h('div', null, h('h3', null, a.title), h('p', null, a.text), ui.tags(a.tags), slot));
       }))
     ]);

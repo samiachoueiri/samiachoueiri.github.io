@@ -23,9 +23,10 @@ Everything else lives in `assets/js/data/`:
 | `profile.js` | Name, bio, portrait, CV link, social links, research interests, news |
 | `publications.js` | Path to the `.bib` file, plus per-paper extras (awards, featured, links) |
 | `research.js` | Research areas, grants |
-| `experience.js` | Education, positions, skills, certifications, languages |
+| `experience.js` | Education, positions, skills, certifications, service, affiliations, languages |
 | `teaching.js` | Courses, lab series, workshops |
-| `recognition.js` | Awards, talks, posters, service, affiliations |
+| `recognition.js` | Awards |
+| `presentations.js` | Talks and posters |
 | `github.js` | GitHub username and featured repos (the full list is fetched live) |
 
 Most items accept `links: [{ label: 'Poster', url: '…' }]`.

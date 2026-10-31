@@ -8,35 +8,35 @@ SITE.research = {
   areas: [
     {
       title: 'DDoS Detection & Mitigation in the Data Plane',
-      image: null, imageLabel: 'Figure: P4-DPDK pipeline / rate-limiting architecture',
+      image: 'assets/media/research/P4-DPDK pipeline rate-limiting architecture.png', imageLabel: 'P4-DPDK pipeline and rate-limiting architecture',
       text: 'Volumetric attacks overwhelm hosts before software defenses can react. I design P4-DPDK pipelines that track heavy flows with sketches and registers and apply adaptive rate limiting directly in the packet path, so mitigation happens at line rate on commodity and virtualized infrastructure.',
       tags: ['P4', 'DPDK', 'Heavy hitters', 'Rate limiting'],
-      keywords: ['DDoS', 'Heavy Hitter', 'Network Resilience']
+      keywords: ['DDoS', 'Heavy Hitter']
     },
     {
       title: 'Encrypted & Malicious Traffic Classification',
-      image: null, imageLabel: 'Figure: traffic classification results',
+      image: 'assets/media/research/traffic classification results.png', imageLabel: 'Encrypted traffic classification pipelines on a SmartNIC',
       text: 'Most traffic is now encrypted, which blinds deep packet inspection. With collaborators I study how to identify encrypted application traffic, DGA domains, DNS tunneling and command-and-control channels from packet metadata — and how to offload that inference to SmartNICs for real-time decisions.',
       tags: ['Encrypted traffic', 'DGA', 'DNS tunneling', 'C2', 'ML'],
       keywords: ['Encrypted', 'DPI']
     },
     {
       title: 'SmartNIC/DPU Security for Cyber-Physical Systems',
-      image: null, imageLabel: 'Photo: BlueField DPU testbed',
+      image: 'assets/media/research/BlueField DPU testbed.png', imageLabel: 'SmartNIC architecture protecting an industrial control network',
       text: 'Industrial control systems need protection without adding latency to time-critical traffic. I run attack and fault detection — including ML classifiers — on NVIDIA BlueField and Intel IPU devices, keeping inspection off the host CPU and next to the wire.',
       tags: ['NVIDIA BlueField', 'DOCA', 'ICS', 'Modbus/TCP'],
       keywords: ['Cyber-Physical', 'Industrial Control', 'SmartNIC', 'Firewalling']
     },
     {
       title: 'Testbeds & Networking Education',
-      image: null, imageLabel: 'Photo: lab rack / workshop',
+      image: 'assets/media/research/lab rack workshop.png', imageLabel: 'Agentic AI support system for hands-on networking labs',
       text: 'Research only matters if others can reproduce and learn it. I help build SmartNIC and programmable data plane testbeds, develop open lab series on NETLAB and FABRIC, and explore agentic AI assistants that guide students through hands-on networking labs.',
       tags: ['FABRIC', 'NETLAB', 'Zeek', 'Agentic AI'],
       keywords: ['Testbed', 'Education']
     },
     {
       title: 'Earlier Work: Robotics & Intelligent Systems',
-      image: null, imageLabel: 'Photo: humanoid simulation / robot',
+      image: 'assets/media/research/humanoid simulation.png', imageLabel: 'Humanoid robot simulation with labelled joints and impact locations',
       text: 'My background is in mechatronics. Earlier work identified impact forces on humanoid robots from joint-position sensors alone, planned mobile robot paths with genetic algorithms, and detected fire and smoke with neural networks; at Oculi I worked on event-based vision sensors for AI applications.',
       tags: ['Robotics', 'Computer vision', 'Neural networks', 'MATLAB'],
       keywords: ['Humanoid', 'Robot Path', 'Fire and Smoke']

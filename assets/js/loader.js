@@ -14,6 +14,7 @@
     'data/experience.js',
     'data/teaching.js',
     'data/recognition.js',
+    'data/presentations.js',
     'data/github.js',
 
     // Core helpers and reusable components
@@ -30,6 +31,7 @@
     'sections/experience.js',
     'sections/teaching.js',
     'sections/recognition.js',
+    'sections/presentations.js',
     'sections/github.js',
 
     // Boot

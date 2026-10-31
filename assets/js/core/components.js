@@ -60,7 +60,11 @@
       : o.title;
     return h('article', { class: 'card reveal' + (o.class ? ' ' + o.class : '') },
       o.showMedia === false ? null
-        : h('div', { class: 'card-media' }, ui.media({ src: o.image, label: o.imageLabel, ratio: o.ratio || '16 / 9', icon: o.imageIcon })),
+        : h('div', { class: 'card-media' }, (function () {
+          var m = ui.media({ src: o.image, alt: o.imageLabel, label: o.imageLabel, ratio: o.ratio || '16 / 9', icon: o.imageIcon, class: o.image ? o.imageClass : null });
+          // imageHref makes the image open (e.g. full size) in a new tab.
+          return o.image && o.imageHref ? h('a', { class: 'figure-link', href: o.imageHref, target: '_blank', rel: 'noopener' }, m) : m;
+        })()),
       o.meta ? h('div', { class: 'meta' }, o.meta) : null,
       h('h3', null, title),
       o.body ? h('p', null, o.body) : null,

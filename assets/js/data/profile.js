@@ -12,12 +12,12 @@ SITE.profile = {
   portrait: 'assets/media/home/portrait.jpg',
   portraitFocus: '50% 30%',
 
-  // Put the PDF in the repo at this path to enable the "Download CV" button. Set to null to hide it.
-  cv: 'assets/cv/Samia_Choueiri_CV.pdf',
+  // Link for the "Download CV" button (Google Drive). Set to null to hide it.
+  cv: 'https://drive.google.com/file/d/1i45N6OiO95iKbN8tjYfIx_BDroYw5zd-/view?usp=sharing',
 
   bio: [
-    'I am a Ph.D. researcher in Informatics at the University of South Carolina, working as a graduate research and teaching assistant in the Department of Integrated Information Technology.',
-    'My research accelerates network security with programmable hardware — P4, DPDK, and SmartNICs/DPUs — to detect and mitigate DDoS attacks, classify encrypted and malicious traffic, and protect cyber-physical systems at line rate. I also build the hands-on lab series and workshops that teach these technologies to students and professionals nationwide.',
+    'I am a Ph.D. candidate at the University of South Carolina, working as a graduate research and teaching assistant in the Department of Integrated Information Technology.',
+    'My research accelerates network security with programmable hardware to detect and mitigate DDoS attacks, classify encrypted and malicious traffic, and protect cyber-physical systems at line rate. I also build the hands-on lab series and workshops that teach these technologies to students and professionals nationwide.',
     'Before my Ph.D., I worked as a computer vision engineer on event-based image sensors at Oculi and spent four years teaching and advising engineering students at the American University of Science and Technology, where I earned my B.S. and M.S. in Computer and Communications Engineering with an emphasis on Mechatronics.'
   ],
 
@@ -36,7 +36,7 @@ SITE.profile = {
     { title: 'Networking education', text: 'Open lab series, testbeds and agentic-AI tools for hands-on cybersecurity training.' }
   ],
 
-  // Newest first. Shown on the home page (first 6).
+  // Newest first. Not currently shown; add <section data-render="home-news"> to index.html to show the first 6.
   news: [
     { date: '2026-10', text: 'Judging PalmettoHacks 2026, a 24-hour MLH hackathon at the University of South Carolina.' },
     { date: '2026-09', text: 'Poster at FABRIC KNIT 13 in Washington, DC: "An Agentic AI Approach for Hands-on Networking Education."' },

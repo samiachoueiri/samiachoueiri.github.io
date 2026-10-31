@@ -26,7 +26,9 @@
       h('p', { class: 'section-intro' }, t.materialsIntro),
       h('div', { class: 'grid' }, t.materials.map(function (m) {
         return ui.card({
-          image: m.image, imageLabel: 'Screenshot: ' + m.title, ratio: '16 / 9',
+          // Figures are fitted uncropped into the frame and open full size when clicked.
+          image: m.image && encodeURI(m.image), imageHref: m.image && encodeURI(m.image), imageClass: 'figure-fit',
+          imageLabel: m.imageLabel || 'Figure: ' + m.title, ratio: '16 / 9',
           meta: m.labs + ' labs · ' + m.platform,
           title: m.title, body: m.desc,
           tags: [{ label: m.role, variant: /lead/i.test(m.role) ? 'accent' : '' }],

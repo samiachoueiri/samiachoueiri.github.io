@@ -1,4 +1,4 @@
-/* Experience page: education, positions, skills, certifications, languages. Dates use 'YYYY-MM'. */
+/* Experience page: education, positions, skills, certifications, service, affiliations, languages. Dates use 'YYYY-MM'. */
 window.SITE = window.SITE || {};
 
 SITE.experience = {
@@ -115,6 +115,25 @@ SITE.experience = {
       ]
     }
   ],
+
+  service: [
+    {
+      group: 'Peer Review',
+      items: [
+        { title: 'Journal Reviewer', detail: 'IEEE Networking Letters (IEEE Xplore); Scientific Reports (Nature)', date: '2026 – present', links: [{ label: 'Records', url: 'https://drive.google.com/drive/folders/1X7h1ce3YV3DPcZRW_9wz4ZVx6u6pDM5R?usp=sharing' }] },
+        { title: 'Conference Reviewer', detail: 'ACDSA 2027; ICECER 2026; ICECET 2026', date: '2026 – present', links: [{ label: 'Records', url: 'https://drive.google.com/drive/folders/1WTo5DU2-2wIexsTUkkmNKnYqX5lYnmNj?usp=sharing' }] }
+      ]
+    },
+    {
+      group: 'Judging',
+      items: [
+        { title: 'Judge, PalmettoHacks 2026', detail: '24-hour MLH hackathon hosted by Kappa Theta Pi, University of South Carolina', date: '2026-10', links: [{ label: 'Event', url: 'https://www.palmettohacks.com/' }] },
+        { title: 'Judge, VEX Robotics Competition', detail: 'Middle and high school competition with about 50 teams, hosted by the Gamecock Robotics Club, University of South Carolina', date: '2023-12', links: [{ label: 'Post', url: 'https://lnkd.in/p/ei263qyR' }] }
+      ]
+    }
+  ],
+
+  affiliations: ['IEEE Senior Member', 'IEEE Communications Society (ComSoc)', 'IEEE Women in Engineering (WIE)'],
 
   languages: [
     { name: 'Arabic', level: 'Native' },

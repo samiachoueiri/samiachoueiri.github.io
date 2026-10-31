@@ -18,10 +18,7 @@ SITE.publicationsConfig = {
 
   extras: {
     choueiri2026globecom_cps: { featured: true },
-    elizalde2026blacksea_dga: {
-      featured: true, award: 'Best Paper Award',
-      links: [{ label: 'PDF', url: 'https://research.cec.sc.edu/files/cyberinfra/files/documents/blackseacom_2026_smartnic_doh.pdf' }]
-    },
+    elizalde2026blacksea_dga: { featured: true, award: 'Best Paper Award' },
     '10.1145/3731599.3767449': { venueShort: "SC '25 Workshops" },
     11432232: { featured: true },
     ELIZALDE2025104257: { venueShort: 'JNCA' },
