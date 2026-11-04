@@ -1,4 +1,4 @@
-# samiachoueiri.github.io
+# [samiachoueiri.github.io](https://samiachoueiri.github.io)
 
 Personal portfolio of Samia Choueiri. It's a static site (plain HTML, CSS and JS with no build step) served by GitHub Pages.
 

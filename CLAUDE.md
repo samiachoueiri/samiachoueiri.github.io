@@ -38,4 +38,4 @@ Content, rendering and pages are kept separate:
 
 ## Content source
 
-The content comes from the owner's LaTeX CV (`CV___Samia_Choueiri.zip` / `.pdf`). Its header includes a home address and phone number, which are deliberately left off the site. `profile.cv` points to `assets/cv/Samia_Choueiri_CV.pdf`, which the owner adds manually.
+The content comes from the owner's LaTeX CV (`CV___Samia_Choueiri.zip` / `.pdf`). Its header includes a home address and phone number, which are deliberately left off the site. `profile.cv` (in `data/profile.js`) is the single CV link used by the Home and Experience buttons.

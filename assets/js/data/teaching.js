@@ -19,7 +19,7 @@ SITE.teaching = {
     },
     {
       name: 'American University of Science and Technology', location: 'Beirut, Lebanon', period: '2019 – 2022',
-      evaluationsUrl: '',
+      evaluationsUrl: 'https://drive.google.com/file/d/15f4NSrdHzIsOZypFPGIlY-WuFok0dfpe/view?usp=sharing',
       courses: [
         { title: 'Senior Design Project Advisor', code: 'CCE/MTE/BME 497X & 499X', terms: 'Fall 2021, Spring 2022', desc: 'Advised senior capstone teams in Computer and Communications, Mechatronics, and Biomedical Engineering through the Senior Design Proposal and Senior Design sequence.' },
         { title: 'Computer Organization & Microprocessors', code: 'CCE 320, CCE 320L', terms: 'Fall 2021, Spring 2022', desc: 'Lecture (Spring 2022) and laboratory (2 terms): Arduino hardware and programming, interfacing, and control of external tasks.' },
