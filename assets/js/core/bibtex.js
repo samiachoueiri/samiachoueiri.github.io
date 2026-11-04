@@ -154,6 +154,13 @@
       if (f[p[0]]) links.push({ label: p[1], url: clean(f[p[0]]), icon: p[0] === 'code' ? 'github' : 'external' });
     });
 
+    // A doi field holding a plain web address (not a DOI) becomes a PDF/Link button instead
+    var doi = clean(f.doi).replace(/^https?:\/\/(dx\.)?doi\.org\//i, '');
+    if (/^https?:\/\//i.test(doi)) {
+      if (!links.some(function (l) { return l.url === doi; })) links.unshift({ label: /\.pdf$/i.test(doi) ? 'PDF' : 'Link', url: doi, icon: 'external' });
+      doi = '';
+    }
+
     var authorsRaw = splitAuthors(f.author || '');
     var me = cfg.me;
     var authors = authorsRaw.map(formatName);
@@ -170,7 +177,7 @@
       details: details,
       year: year,
       type: extra.type || type,
-      doi: clean(f.doi).replace(/^https?:\/\/(dx\.)?doi\.org\//i, '') || null,
+      doi: doi || null,
       award: extra.award || clean(f.award) || null,
       featured: extra.featured != null ? extra.featured : /^(true|yes|1)$/i.test(clean(f.featured)),
       links: links.concat(extra.links || []),
