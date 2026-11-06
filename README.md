@@ -10,6 +10,9 @@ You can also open the `.html` files directly. Everything works that way except t
 
 ## Editing content
 
+For a step-by-step checklist of what to update in the CV, the website and the application documents whenever
+something new happens (a paper, an award, a course…), see [MAINTAINING.md](MAINTAINING.md).
+
 **Publications** come from [`assets/data/publications.bib`](assets/data/publications.bib), the same BibTeX your LaTeX CV uses.
 - To add a paper, paste its entry into that file.
 - Write your name as `\textbf{S. Choueiri}` to bold it.
