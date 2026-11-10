@@ -25,7 +25,7 @@ SITE.research = {
       image: 'assets/media/research/BlueField DPU testbed.png', imageLabel: 'SmartNIC architecture protecting an industrial control network',
       text: 'Industrial control systems need protection without adding latency to time-critical traffic. I run attack and fault detection — including ML classifiers — on NVIDIA BlueField and Intel IPU devices, keeping inspection off the host CPU and next to the wire.',
       tags: ['NVIDIA BlueField', 'DOCA', 'ICS', 'Modbus/TCP'],
-      keywords: ['Cyber-Physical', 'Industrial Control', 'SmartNIC', 'Firewalling']
+      keywords: ['Cyber-Physical', 'Industrial Control', 'SmartNIC', 'Firewalling', 'DPU']
     },
     {
       title: 'Testbeds & Networking Education',

@@ -97,7 +97,7 @@ SITE.experience = {
     {
       group: 'Networking & Security',
       items: [
-        { title: 'CCNA: Enterprise Networking, Security, and Automation', issuer: 'Cisco Networking Academy, Stanly Community College', date: 'In progress' },
+        { title: 'CCNA: Enterprise Networking, Security, and Automation', issuer: 'Cisco Networking Academy, Stanly Community College', date: '2026-11', links: [{ label: 'Badge', url: 'https://www.credly.com/badges/a0eac0d8-bd31-4603-a00d-4e3e4cf70d10/public_url' }] },
         { title: 'CCNA: Switching, Routing, and Wireless Essentials', issuer: 'Cisco Networking Academy, Stanly Community College', date: '2026-05', links: [{ label: 'Badge', url: 'https://www.credly.com/badges/571dce2d-4296-4d57-91b5-47aa9c9f98bb/public_url' }] },
         { title: 'CyberOps Associate', issuer: 'Cisco Networking Academy, Stanly Community College', date: '2025-07', links: [{ label: 'Badge', url: 'https://www.credly.com/badges/c986d7a3-aa93-4668-9214-87caede74f59/public_url' }] },
         { title: 'Cisco Certified Instructor, CCNA: Introduction to Networks', issuer: 'Cisco Networking Academy, instructor training course', date: '2025-05', links: [{ label: 'Badge', url: 'https://www.credly.com/badges/c72f4965-ee1a-4595-97e3-d2ec8db067f3/public_url' }] },
@@ -120,7 +120,7 @@ SITE.experience = {
     {
       group: 'Peer Review',
       items: [
-        { title: 'Journal Reviewer', detail: 'IEEE Networking Letters (IEEE Xplore); Scientific Reports (Nature)', date: '2026 – present', links: [{ label: 'Records', url: 'https://drive.google.com/drive/folders/1X7h1ce3YV3DPcZRW_9wz4ZVx6u6pDM5R?usp=sharing' }] },
+        { title: 'Journal Reviewer', detail: 'IEEE Networking Letters (IEEE Xplore); Scientific Reports (Nature); CMES (Tech Science Press)', date: '2026 – present', links: [{ label: 'Records', url: 'https://drive.google.com/drive/folders/1X7h1ce3YV3DPcZRW_9wz4ZVx6u6pDM5R?usp=sharing' }] },
         { title: 'Conference Reviewer', detail: 'ACDSA 2027; ICECER 2026; ICECET 2026', date: '2026 – present', links: [{ label: 'Records', url: 'https://drive.google.com/drive/folders/1WTo5DU2-2wIexsTUkkmNKnYqX5lYnmNj?usp=sharing' }] }
       ]
     },

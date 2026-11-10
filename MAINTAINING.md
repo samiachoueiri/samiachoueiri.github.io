@@ -39,6 +39,21 @@ course codes); **green** = a fact still to fill in or confirm once.
 Each checklist is **CV → website → documents**. "Numbers" means a count that appears in the text of a document; the
 full list of these is in §5, so you can check them all at once.
 
+### Grant check (for publications, posters, talks, labs and workshops)
+
+New work is often funded by a grant you are not yet listed on. Every time you add one of these items:
+
+1. **Find the funding.** Look at the *Acknowledgment* section of the paper or poster, the funding note in the lab
+   manual or workshop page, or ask your advisor (PI). Note every award number (e.g. "NSF Award 2417823",
+   "ONR N00014-23-1-2245").
+2. **Compare with your list.** The grants you already list are in `assets/js/data/research.js` → `grants`
+   (currently NSF 2346726, 2403360, 2417823, 2400729, 2118311 and ONR N00014-23-1-2245, N00014-20-1-2797).
+3. **If the award is new to you:** follow **"New grant / funded project"** below, in the CV, website and
+   documents, and update the **number of funded projects** (§5).
+4. **If the award is already listed:** check that your role on it (`contribution` in `research.js`, the CV, and
+   the research statement's funded-projects list) still describes what you did, e.g. add "co-authored the
+   CCNC 2027 paper on …" or "developed the … lab series".
+
 ### New publication
 
 1. **CV:** add the BibTeX entry to the CV's `.bib` (Publications section updates itself). Write your name as
@@ -59,6 +74,7 @@ full list of these is in §5, so you can check them all at once.
    - Update the counts: **total papers** and **first-author papers** (cover letter, research statement), and the
      venue list if it is a new venue.
    - If it is an education paper, also consider the teaching statement (Pedagogical Approach).
+4. **Grant check:** read the paper's Acknowledgment section and follow the "Grant check" above.
 
 ### New award
 
@@ -77,6 +93,7 @@ full list of these is in §5, so you can check them all at once.
 2. **Website:** `assets/js/data/presentations.js` → `talks` or `posters` (newest first), with `links` to the slides
    or poster.
 3. **Documents:** usually none. Mention it only if it is a major invited talk (cover letter or research statement).
+4. **Grant check:** read the poster's or slides' acknowledgment and follow the "Grant check" above.
 
 ### New course taught
 
@@ -96,6 +113,8 @@ full list of these is in §5, so you can check them all at once.
    with `role`, `platform`, `links`, and a figure in `assets/media/teaching/`.
 3. **Documents:** teaching statement ("Hands-on Labs and Workshops" bullets), cover letter (labs sentence),
    `course_offering.docx` (the course it supports). Update the **lab counts** (series and total labs).
+4. **Grant check:** find which award funds the lab series (manual's acknowledgment or your PI) and follow the
+   "Grant check" above.
 
 ### New workshop delivered
 
@@ -103,6 +122,8 @@ full list of these is in §5, so you can check them all at once.
 2. **Website:** `assets/js/data/teaching.js` → `workshops` (newest first). `attendees` must be a **number**.
 3. **Documents:** teaching statement (workshop bullets), cover letter and diversity statement. Update the
    **workshop count** and **total participants**.
+4. **Grant check:** workshops are usually run under a specific award (see the workshop page); follow the
+   "Grant check" above.
 
 ### New grant / funded project
 
@@ -185,8 +206,10 @@ Preview before pushing: run `python -m http.server` in the repo root and open ht
 
 1. **One publications file.** The website reads `assets/data/publications.bib`. Point your LaTeX CV at that same
    file (e.g. `\addbibresource{…/assets/data/publications.bib}` or `\bibliography{…}`) instead of keeping a separate
-   copy, so a new paper is added exactly once. If you keep a copy (such as `ref.bib` in the repo root), copy it over
-   `assets/data/publications.bib` after every change, because the site does not read `ref.bib`.
+   copy, so a new paper is added exactly once. If the CV keeps its own copy of the `.bib`, copy it over
+   `assets/data/publications.bib` after every change, because the site reads only that file.
+   **Each entry needs a unique citation key** (e.g. `albanna2027ccnc_dpu`): the website's per-paper extras and
+   LaTeX both identify papers by key, so copying an old entry and forgetting to rename the key causes bugs.
 2. **Keep the CV source next to the site.** Putting the LaTeX CV in a `cv/` folder in this repo makes step 1
    trivial, and every change (CV, website) is in one place and one commit. The compiled PDF stays at
    `CV___Samia_Choueiri.pdf`.
@@ -209,7 +232,7 @@ every place listed.
 
 | Number (as of Nov 2026) | Appears in |
 |---|---|
-| **19** peer-reviewed publications, **7** as first author | Cover letter (expertise paragraph), research statement (opening paragraph) |
+| **20** peer-reviewed publications, **7** as first author | Cover letter (expertise paragraph), research statement (opening paragraph) |
 | Awards: **Best Paper** (BlackSeaCom 2026), **3** Best Poster Awards at FABRIC KNIT | Cover letter, research statement |
 | **7** funded projects (5 NSF, 2 ONR) | Cover letter, research statement (funded-projects list) |
 | **4** lab series / **30** labs led; **2** series / **12** labs contributed | Cover letter, teaching statement, course offering |
