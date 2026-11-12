@@ -6,19 +6,20 @@ SITE.experience = {
     {
       degree: 'Ph.D. in Informatics', school: 'University of South Carolina',
       start: '2023-09', end: 'present', logo: 'assets/media/experience/usc.jpg',
-      details: ['GPA: 4.0/4.0']
+      details: ['GPA: 4.0/4.0'],
+      links: [{ label: 'Unofficial transcript', url: 'https://drive.google.com/file/d/1g65mOJTi2ZUz7beMfQf_EANL-mM74_0p/view?usp=sharing' }]
     },
     {
       degree: 'M.S. in Computer and Communications Engineering', school: 'American University of Science and Technology',
       start: '2018-10', end: '2021-06', logo: 'assets/media/experience/aust.jpg',
       details: ['Emphasis: Mechatronics Engineering', 'GPA: 3.9/4.0'],
-      links: [{ label: 'Degree', url: 'https://drive.google.com/file/d/1wK5paozp9rdfVlqJUTwS00ga2bbjpuwG/view?usp=drive_link' }, { label: 'Transcript', url: 'https://drive.google.com/file/d/1Hm6LtNkR2DY-WzknJT0OluDMKW-V0mD7/view?usp=sharing' }]
+      links: [{ label: 'Degree', url: 'https://drive.google.com/file/d/11YkaTnEAiez3_C_IUHiUr8zbyto2zEhj/view?usp=sharing' }, { label: 'Transcript', url: 'https://drive.google.com/file/d/1efwX6ArylucfawNy4B6MUvUPJRe6Nm17/view?usp=sharing' }]
     },
     {
       degree: 'B.S. in Computer and Communications Engineering', school: 'American University of Science and Technology',
       start: '2013-10', end: '2018-06', logo: 'assets/media/experience/aust.jpg',
       details: ['Emphasis: Mechatronics Engineering', 'GPA: 3.4/4.0'],
-      links: [{ label: 'Degree', url: 'https://drive.google.com/file/d/11YkaTnEAiez3_C_IUHiUr8zbyto2zEhj/view?usp=sharing' }, { label: 'Transcript', url: 'https://drive.google.com/file/d/1efwX6ArylucfawNy4B6MUvUPJRe6Nm17/view?usp=sharing' }]
+      links: [{ label: 'Degree', url: 'https://drive.google.com/file/d/1wK5paozp9rdfVlqJUTwS00ga2bbjpuwG/view?usp=drive_link' }, { label: 'Transcript', url: 'https://drive.google.com/file/d/1Hm6LtNkR2DY-WzknJT0OluDMKW-V0mD7/view?usp=sharing' }]
     }
   ],
 
@@ -133,7 +134,7 @@ SITE.experience = {
     }
   ],
 
-  affiliations: ['IEEE Senior Member', 'IEEE Communications Society (ComSoc)', 'IEEE Women in Engineering (WIE)'],
+  affiliations: ['IEEE Student Member', 'IEEE Communications Society (ComSoc)', 'IEEE Women in Engineering (WIE)'],
 
   languages: [
     { name: 'Arabic', level: 'Native' },
