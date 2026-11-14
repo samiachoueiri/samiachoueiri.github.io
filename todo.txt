@@ -1,2 +1,3 @@
 - add ITEC 233 Evaluation
 - switch cps ccna order
+- add quantum workshop
